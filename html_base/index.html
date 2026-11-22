@@ -1,0 +1,357 @@
+<!DOCTYPE html><html lang="fr" class="dark"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NetForge — Générateur de configuration réseau pour administrateurs</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">/** @type {import('tailwindcss').Config} */
+globalThis.tailwind = globalThis.tailwind || {};
+globalThis.tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        'accent': '#22D3EE',
+        'on-accent': '#083344',
+        'success': '#10B981',
+        'on-success': '#022C22',
+        'warning': '#F59E0B',
+        'on-warning': '#451A03',
+        'error': '#EF4444',
+        'on-error': '#3C0909',
+        'info': '#3B82F6',
+        'on-info': '#0F1C43',
+        'brand-cyan': '#22D3EE',
+        'brand-cyan-dim': '#083344',
+        'light-primary': '#0891B2',
+        'light-on-primary': '#1E1E1E',
+        'light-surface': '#F8FAFC',
+        'light-on-surface': '#0F172A',
+        'light-surface-container': '#FFFFFF',
+        'light-surface-container-low': '#F1F5F9',
+        'light-surface-container-high': '#E2E8F0',
+        'light-outline': '#CBD5E1',
+        'light-outline-variant': '#64748B',
+        'dark-primary': '#22D3EE',
+        'dark-on-primary': '#083344',
+        'dark-surface': '#0B0F14',
+        'dark-on-surface': '#E2E8F0',
+        'dark-surface-container': '#131A22',
+        'dark-surface-container-low': '#0E141B',
+        'dark-surface-container-high': '#1C2633',
+        'dark-outline': '#232D38',
+        'dark-outline-variant': '#94A3B8',
+      },
+      borderRadius: {
+        'sm': '4px',
+        'DEFAULT': '8px',
+        'md': '8px',
+        'lg': '12px',
+        'xl': '16px',
+        'full': '9999px',
+      },
+      spacing: {
+        'gutter-xs': '4px',
+        'gutter-sm': '8px',
+        'gutter-md': '16px',
+        'gutter-lg': '24px',
+        'gutter-xl': '32px',
+        'section': '48px',
+        'page-margin': '24px',
+      },
+      fontFamily: {
+        'display': ['"Inter"', 'sans-serif'],
+        'headline': ['"Inter"', 'sans-serif'],
+        'body': ['"Inter"', 'sans-serif'],
+        'label': ['"Inter"', 'sans-serif'],
+        'code': ['"JetBrains Mono"', 'monospace'],
+      },
+      fontSize: {
+        'display-lg': ['40px', { lineHeight: '48px', letterSpacing: '-0.02em', fontWeight: '700' }],
+        'display-lg-mobile': ['28px', { lineHeight: '36px', letterSpacing: '-0.01em', fontWeight: '700' }],
+        'headline-lg': ['28px', { lineHeight: '36px', letterSpacing: '-0.01em', fontWeight: '700' }],
+        'headline-lg-mobile': ['22px', { lineHeight: '28px', letterSpacing: '0em', fontWeight: '600' }],
+        'headline-md': ['20px', { lineHeight: '28px', letterSpacing: '-0.005em', fontWeight: '600' }],
+        'headline-sm': ['16px', { lineHeight: '24px', letterSpacing: '0em', fontWeight: '600' }],
+        'body-lg': ['16px', { lineHeight: '24px', letterSpacing: '0em', fontWeight: '400' }],
+        'body-md': ['14px', { lineHeight: '20px', letterSpacing: '0em', fontWeight: '400' }],
+        'body-sm': ['12px', { lineHeight: '16px', letterSpacing: '0.01em', fontWeight: '400' }],
+        'label-lg': ['14px', { lineHeight: '20px', letterSpacing: '0.01em', fontWeight: '500' }],
+        'label-md': ['12px', { lineHeight: '16px', letterSpacing: '0.02em', fontWeight: '500' }],
+        'label-sm': ['11px', { lineHeight: '14px', letterSpacing: '0.04em', fontWeight: '600' }],
+        'label-xs': ['10px', { lineHeight: '14px', letterSpacing: '0.05em', fontWeight: '600' }],
+        'code-lg': ['15px', { lineHeight: '22px', letterSpacing: '0em', fontWeight: '500' }],
+        'code-md': ['13px', { lineHeight: '20px', letterSpacing: '0em', fontWeight: '400' }],
+        'code-sm': ['12px', { lineHeight: '16px', letterSpacing: '0em', fontWeight: '400' }],
+        'code-xs': ['10px', { lineHeight: '14px', letterSpacing: '0em', fontWeight: '400' }],
+      },
+      transitionDuration: {
+        'state-change': '120ms',
+        'surface-enter': '200ms',
+        'surface-exit': '150ms',
+      },
+      transitionDelay: {
+        'state-change': '0ms',
+        'surface-enter': '0ms',
+        'surface-exit': '0ms',
+      },
+      transitionTimingFunction: {
+        'state-change': 'ease-out',
+        'surface-enter': 'cubic-bezier(0.16, 1, 0.3, 1)',
+        'surface-exit': 'ease-in',
+      },
+    },
+  },
+};
+if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
+</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
+  <style>
+    .material-symbols-outlined { display: inline-block; width: 1em; height: 1em; line-height: 1 !important; box-sizing: content-box; overflow: hidden; white-space: nowrap; direction: ltr; vertical-align: middle; }
+  </style>
+</head>
+<body class="bg-dark-surface text-dark-on-surface font-body antialiased min-h-[1024px] flex flex-col selection:bg-accent/20 selection:text-accent" data-stitch-vh="min-h-[1024px]===min-h-screen">
+
+  <!-- Header Navigation -->
+  <header class="sticky top-0 z-50 bg-dark-surface/95 border-b border-dark-outline">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-8">
+        <a href="../home-landing/HomeLanding.html" class="flex items-center gap-3 group">
+          <div class="w-9 h-9 rounded bg-dark-surface-container-high border border-dark-outline group-hover:border-accent flex items-center justify-center transition-colors">
+            <span class="material-symbols-outlined text-accent text-headline-sm">hub</span>
+          </div>
+          <div class="flex flex-col">
+            <span class="font-headline font-bold text-headline-sm text-dark-on-surface leading-tight flex items-center gap-1.5">
+              NetForge <span class="text-accent text-code-xs font-mono font-medium px-1.5 py-0.5 rounded bg-dark-surface-container-low border border-dark-outline">v2.4</span>
+            </span>
+            <span class="text-label-xs text-dark-outline-variant leading-none font-mono">CLI &amp; Firewall Generator</span>
+          </div>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-1">
+          <a href="../home-landing/HomeLanding.html" class="px-3 py-1.5 text-label-md font-label text-accent bg-dark-surface-container-high rounded border border-dark-outline">Accueil</a>
+          <a href="../config-wizard/ConfigWizard.html" class="px-3 py-1.5 text-label-md font-label text-dark-outline-variant hover:text-dark-on-surface hover:bg-dark-surface-container transition-colors rounded">Assistant 4 Étapes</a>
+          <a href="../results-dashboard/ResultsDashboard.html" class="px-3 py-1.5 text-label-md font-label text-dark-outline-variant hover:text-dark-on-surface hover:bg-dark-surface-container transition-colors rounded">Tableau de Bord</a>
+          <a href="../network-topology/NetworkTopology.html" class="px-3 py-1.5 text-label-md font-label text-dark-outline-variant hover:text-dark-on-surface hover:bg-dark-surface-container transition-colors rounded">Topologie Réseau</a>
+          <a href="../about-portfolio/AboutPortfolio.html" class="px-3 py-1.5 text-label-md font-label text-dark-outline-variant hover:text-dark-on-surface hover:bg-dark-surface-container transition-colors rounded">À propos</a>
+        </nav>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="https://github.com" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 px-3 py-1.5 rounded bg-dark-surface-container border border-dark-outline text-label-md font-label text-dark-outline-variant hover:text-dark-on-surface hover:border-dark-outline-variant transition-colors">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"></path></svg>
+          <span class="hidden sm:inline">Repo GitHub</span>
+        </a>
+        <a href="../config-wizard/ConfigWizard.html" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-accent text-on-accent font-label text-label-md rounded font-semibold hover:bg-cyan-300 transition-colors">
+          <span>Essayer l&#39;outil</span>
+          <span class="material-symbols-outlined text-body-lg">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main class="flex-1">
+    <section class="relative pt-16 pb-20 border-b border-dark-outline overflow-hidden bg-gradient-to-b from-dark-surface via-dark-surface-container-low to-dark-surface">
+      <div class="absolute inset-0 bg-[linear-gradient(to_right,#232D38_1px,transparent_1px),linear-gradient(to_bottom,#232D38_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-20 pointer-events-none"></div>
+
+      <div class="max-w-5xl mx-auto px-6 relative z-10 text-center">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-dark-surface-container border border-dark-outline text-label-sm font-label text-dark-outline-variant mb-6">
+          <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
+          <span>Générateur automatisé de configurations réseau d&#39;infrastructure</span>
+        </div>
+
+        <h1 class="font-headline text-display-lg font-bold text-dark-on-surface tracking-tight max-w-4xl mx-auto mb-6">
+          De votre schéma logique aux scripts de déploiement en <span class="text-accent underline decoration-accent/40 underline-offset-8">secondes</span>.
+        </h1>
+
+        <p class="font-body text-body-lg text-dark-outline-variant max-w-2xl mx-auto mb-10 text-pretty">
+          Décrivez vos besoins en langage naturel ou personnalisez vos VLANs : NetForge calcule l&#39;adressage VLSM, génère les scripts Cisco IOS, les règles de pare-feu pfSense, le DHCP PowerShell et toute la documentation.
+        </p>
+
+        <!-- Natural Language Quick Prompt Input -->
+        <div class="max-w-3xl mx-auto mb-6">
+          <form action="../results-dashboard/ResultsDashboard.html" method="GET" class="bg-dark-surface-container rounded-lg border border-dark-outline p-2.5 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shadow-2xl focus-within:border-accent transition-colors">
+            <div class="flex-1 flex items-center gap-3 px-3 py-1.5">
+              <span class="material-symbols-outlined text-accent text-headline-sm">prompt_suggestion</span>
+              <input type="text" name="quickPrompt" value="3 VLANs (50 postes Utilisateurs, 1 Serveur, 1 DMZ), réseau 192.168.0.0/16" placeholder="Ex. 3 VLANs, 50 postes, 1 serveur, 1 DMZ..." class="w-full bg-transparent border-0 text-dark-on-surface placeholder:text-dark-outline-variant text-body-md font-code focus:ring-0 focus:outline-none">
+            </div>
+            <button type="submit" class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-accent text-on-accent font-label text-label-lg font-semibold rounded hover:bg-cyan-300 transition-colors whitespace-nowrap cursor-pointer">
+              <span class="material-symbols-outlined text-headline-sm">bolt</span>
+              <span>Générer</span>
+            </button>
+          </form>
+
+          <div class="flex items-center justify-center gap-6 mt-4">
+            <a href="../config-wizard/ConfigWizard.html" class="inline-flex items-center gap-1.5 text-label-md font-label text-accent hover:underline">
+              <span class="material-symbols-outlined text-body-lg">tune</span>
+              <span>Utiliser le formulaire détaillé étape par étape</span>
+            </a>
+            <span class="text-dark-outline-variant">•</span>
+            <span class="text-body-sm text-dark-outline-variant font-code">Modèle pré-chargé : RFC 1918 /16</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Three Capability Cards: What the tool generates -->
+    <section class="py-16 max-w-6xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="font-headline text-headline-lg font-bold text-dark-on-surface mb-2">Ce que l&#39;outil génère</h2>
+        <p class="text-body-md text-dark-outline-variant max-w-xl mx-auto">
+          Zéro saisie manuelle de masques ou de listes de contrôle d&#39;accès : chaque artéfact respecte les normes de sécurité CIS et ANSSI.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Card 1: Adressage -->
+        <article class="bg-dark-surface-container rounded-lg border border-dark-outline p-6 hover:border-dark-outline-variant transition-colors flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded bg-dark-surface-container-low border border-dark-outline flex items-center justify-center text-accent mb-5">
+              <span class="material-symbols-outlined text-headline-md">calculate</span>
+            </div>
+            <h3 class="font-headline text-headline-sm font-semibold text-dark-on-surface mb-2">1. Plan d&#39;Adressage VLSM</h3>
+            <p class="text-body-md text-dark-outline-variant mb-4">
+              Calcul automatique sans gaspillage d&#39;adresses. Découpage hiérarchique avec plages DHCP dédiées, adresses de passerelle, de diffusion et détection des conflits de sous-réseaux.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-dark-outline font-code text-code-sm text-dark-outline-variant">
+            Exemple : <span class="text-accent">192.168.10.0/26</span> (62 hôtes)
+          </div>
+        </article>
+
+        <!-- Card 2: Sécurité & Pare-Feu -->
+        <article class="bg-dark-surface-container rounded-lg border border-dark-outline p-6 hover:border-dark-outline-variant transition-colors flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded bg-dark-surface-container-low border border-dark-outline flex items-center justify-center text-emerald-400 mb-5">
+              <span class="material-symbols-outlined text-headline-md">security</span>
+            </div>
+            <h3 class="font-headline text-headline-sm font-semibold text-dark-on-surface mb-2">2. Sécurité &amp; Pare-Feu pfSense</h3>
+            <p class="text-body-md text-dark-outline-variant mb-4">
+              Matrice de flux inter-VLAN, règles d&#39;isolation stricte pour la DMZ et les invités, politique de refus par défaut (Default Deny), blocage RFC 1918 et filtrage par port/protocole.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-dark-outline font-code text-code-sm text-dark-outline-variant">
+            Règles Pass/Block prêtes à injecter
+          </div>
+        </article>
+
+        <!-- Card 3: Automatisation CLI & Documentation -->
+        <article class="bg-dark-surface-container rounded-lg border border-dark-outline p-6 hover:border-dark-outline-variant transition-colors flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded bg-dark-surface-container-low border border-dark-outline flex items-center justify-center text-cyan-300 mb-5">
+              <span class="material-symbols-outlined text-headline-md">terminal</span>
+            </div>
+            <h3 class="font-headline text-headline-sm font-semibold text-dark-on-surface mb-2">3. Automatisation CLI &amp; Doc</h3>
+            <p class="text-body-md text-dark-outline-variant mb-4">
+              Commandes Cisco IOS complètes (802.1Q trunk, SVI, Port Security, SSH v2), script PowerShell pour serveurs Windows DHCP/DNS et documentation technique exportable.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-dark-outline font-code text-code-sm text-dark-outline-variant">
+            Sorties : Cisco, pfSense, .ps1, PDF, MD
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Visual Output Preview Mockup Under Hero -->
+    <section class="py-12 bg-dark-surface-container-low border-t border-dark-outline">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="flex items-center justify-between mb-6">
+          <div>
+            <span class="text-label-sm font-label text-accent uppercase tracking-wider">Aperçu en direct</span>
+            <h2 class="font-headline text-headline-md font-bold text-dark-on-surface">Extrait d&#39;une configuration générée (3 VLANs)</h2>
+          </div>
+          <a href="../results-dashboard/ResultsDashboard.html" class="inline-flex items-center gap-1 text-label-md font-label text-accent hover:underline">
+            <span>Ouvrir le tableau de bord complet</span>
+            <span class="material-symbols-outlined text-body-sm">open_in_new</span>
+          </a>
+        </div>
+
+        <div class="rounded-lg border border-dark-outline bg-dark-surface-container overflow-hidden shadow-2xl">
+          <div class="px-4 py-3 bg-dark-surface-container-high border-b border-dark-outline flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-error inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-warning inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-success inline-block"></span>
+              <span class="ml-3 font-code text-code-sm text-dark-outline-variant">Cisco-Catalyst-Core-SW01.ios — Syntaxe vérifiée</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="text-label-sm font-label text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-800/40">Conforme CIS Benchmark</span>
+              <span class="text-dark-outline-variant text-code-sm font-code">UTF-8</span>
+            </div>
+          </div>
+
+          <div class="p-6 font-code text-code-md overflow-x-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div>
+              <div class="text-dark-outline-variant text-code-sm mb-2 font-mono">// --- SEGMENTATION VLANS &amp; SVIs ---</div>
+              <pre class="text-dark-on-surface leading-relaxed"><code><span class="text-dark-outline-variant">! Définition des VLANs</span>
+vlan 10
+ name VLAN_UTILISATEURS
+vlan 20
+ name VLAN_SERVEURS
+vlan 30
+ name VLAN_DMZ_PUBLIQUE
+exit
+
+<span class="text-dark-outline-variant">! Passerelles virtuelles (SVI)</span>
+interface Vlan10
+ description GW Utilisateurs (50 postes)
+ ip address <span class="text-accent">192.168.10.1 255.255.255.192</span>
+ no shutdown
+!
+interface Vlan20
+ description GW Serveurs Applicatifs
+ ip address <span class="text-accent">192.168.20.1 255.255.255.240</span>
+ no shutdown</code></pre>
+            </div>
+
+            <div class="border-t lg:border-t-0 lg:border-l border-dark-outline pt-6 lg:pt-0 lg:pl-8">
+              <div class="text-dark-outline-variant text-code-sm mb-2 font-mono">// --- MATRICE DE ROUTAGE pfSense ---</div>
+              <div class="space-y-2 text-body-sm font-code">
+                <div class="p-2.5 rounded bg-dark-surface-container-low border border-dark-outline flex items-center justify-between">
+                  <span class="text-emerald-400 font-semibold flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-400"></span>PASS</span>
+                  <span class="text-dark-on-surface">VLAN_10 → WAN (HTTP/HTTPS)</span>
+                  <span class="text-accent">TCP 80, 443</span>
+                </div>
+                <div class="p-2.5 rounded bg-dark-surface-container-low border border-dark-outline flex items-center justify-between">
+                  <span class="text-red-400 font-semibold flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-red-400"></span>BLOCK</span>
+                  <span class="text-dark-on-surface">VLAN_30 (DMZ) → VLAN_10, 20</span>
+                  <span class="text-dark-outline-variant">TOUT TRAFIC</span>
+                </div>
+                <div class="p-2.5 rounded bg-dark-surface-container-low border border-dark-outline flex items-center justify-between">
+                  <span class="text-emerald-400 font-semibold flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-400"></span>PASS</span>
+                  <span class="text-dark-on-surface">VLAN_10 → VLAN_20 (Serveurs)</span>
+                  <span class="text-accent">TCP 445, 3389</span>
+                </div>
+              </div>
+              <div class="mt-4 flex items-center justify-end">
+                <a href="../results-dashboard/ResultsDashboard.html" class="inline-flex items-center gap-1 text-label-sm font-label text-accent hover:underline">
+                  Voir les 14 règles de filtrage →
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-dark-surface border-t border-dark-outline py-8 text-dark-outline-variant text-body-sm">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-accent text-body-lg">shield_with_heart</span>
+        <span>NetForge — Générateur de configuration réseau certifié conforme ANSSI &amp; CIS</span>
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="../about-portfolio/AboutPortfolio.html" class="hover:text-dark-on-surface transition-colors">Documentation</a>
+        <a href="../about-portfolio/AboutPortfolio.html" class="hover:text-dark-on-surface transition-colors">À propos &amp; Compétences</a>
+        <a href="https://github.com" class="hover:text-dark-on-surface transition-colors">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+
+
+</body></html>

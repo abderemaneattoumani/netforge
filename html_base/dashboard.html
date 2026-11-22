@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Résultats de Génération Réseau — NetForge</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">/** @type {import('tailwindcss').Config} */
+    globalThis.tailwind = globalThis.tailwind || {};
+    globalThis.tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'accent': '#22D3EE',
+            'on-accent': '#083344',
+            'success': '#10B981',
+            'on-success': '#022C22',
+            'warning': '#F59E0B',
+            'on-warning': '#451A03',
+            'error': '#EF4444',
+            'on-error': '#3C0909',
+            'info': '#3B82F6',
+            'on-info': '#0F1C43',
+            'brand-cyan': '#22D3EE',
+            'brand-cyan-dim': '#083344',
+            'light-primary': '#0891B2',
+            'light-on-primary': '#1E1E1E',
+            'light-surface': '#F8FAFC',
+            'light-on-surface': '#0F172A',
+            'light-surface-container': '#FFFFFF',
+            'light-surface-container-low': '#F1F5F9',
+            'light-surface-container-high': '#E2E8F0',
+            'light-outline': '#CBD5E1',
+            'light-outline-variant': '#64748B',
+            'dark-primary': '#22D3EE',
+            'dark-on-primary': '#083344',
+            'dark-surface': '#0B0F14',
+            'dark-on-surface': '#E2E8F0',
+            'dark-surface-container': '#131A22',
+            'dark-surface-container-low': '#0E141B',
+            'dark-surface-container-high': '#1C2633',
+            'dark-outline': '#232D38',
+            'dark-outline-variant': '#94A3B8',
+          },
+          borderRadius: {
+            'sm': '4px',
+            'DEFAULT': '8px',
+            'md': '8px',
+            'lg': '12px',
+            'xl': '16px',
+            'full': '9999px',
+          },
+          spacing: {
+            'gutter-xs': '4px',
+            'gutter-sm': '8px',
+            'gutter-md': '16px',
+            'gutter-lg': '24px',
+            'gutter-xl': '32px',
+            'section': '48px',
+            'page-margin': '24px',
+          },
+          fontFamily: {
+            'display': ['"Inter"', 'sans-serif'],
+            'headline': ['"Inter"', 'sans-serif'],
+            'body': ['"Inter"', 'sans-serif'],
+            'label': ['"Inter"', 'sans-serif'],
+            'code': ['"JetBrains Mono"', 'monospace'],
+          },
+          fontSize: {
+            'display-lg': ['40px', { lineHeight: '48px', letterSpacing: '-0.02em', fontWeight: '700' }],
+            'display-lg-mobile': ['28px', { lineHeight: '36px', letterSpacing: '-0.01em', fontWeight: '700' }],
+            'headline-lg': ['28px', { lineHeight: '36px', letterSpacing: '-0.01em', fontWeight: '700' }],
+            'headline-lg-mobile': ['22px', { lineHeight: '28px', letterSpacing: '0em', fontWeight: '600' }],
+            'headline-md': ['20px', { lineHeight: '28px', letterSpacing: '-0.005em', fontWeight: '600' }],
+            'headline-sm': ['16px', { lineHeight: '24px', letterSpacing: '0em', fontWeight: '600' }],
+            'body-lg': ['16px', { lineHeight: '24px', letterSpacing: '0em', fontWeight: '400' }],
+            'body-md': ['14px', { lineHeight: '20px', letterSpacing: '0em', fontWeight: '400' }],
+            'body-sm': ['12px', { lineHeight: '16px', letterSpacing: '0.01em', fontWeight: '400' }],
+            'label-lg': ['14px', { lineHeight: '20px', letterSpacing: '0.01em', fontWeight: '500' }],
+            'label-md': ['12px', { lineHeight: '16px', letterSpacing: '0.02em', fontWeight: '500' }],
+            'label-sm': ['11px', { lineHeight: '14px', letterSpacing: '0.04em', fontWeight: '600' }],
+            'label-xs': ['10px', { lineHeight: '14px', letterSpacing: '0.05em', fontWeight: '600' }],
+            'code-lg': ['15px', { lineHeight: '22px', letterSpacing: '0em', fontWeight: '500' }],
+            'code-md': ['13px', { lineHeight: '20px', letterSpacing: '0em', fontWeight: '400' }],
+            'code-sm': ['12px', { lineHeight: '16px', letterSpacing: '0em', fontWeight: '400' }],
+            'code-xs': ['10px', { lineHeight: '14px', letterSpacing: '0em', fontWeight: '400' }],
+          },
+          transitionDuration: {
+            'state-change': '120ms',
+            'surface-enter': '200ms',
+            'surface-exit': '150ms',
+          },
+          transitionDelay: {
+            'state-change': '0ms',
+            'surface-enter': '0ms',
+            'surface-exit': '0ms',
+          },
+          transitionTimingFunction: {
+            'state-change': 'ease-out',
+            'surface-enter': 'cubic-bezier(0.16, 1, 0.3, 1)',
+            'surface-exit': 'ease-in',
+          },
+        },
+      },
+    };
+    if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
+  </script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block"
+    rel="stylesheet">
+  <style>
+    .material-symbols-outlined {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      line-height: 1 !important;
+      box-sizing: content-box;
+      overflow: hidden;
+      white-space: nowrap;
+      direction: ltr;
+      vertical-align: middle;
+    }
+
+    .token-comment {
+      color: #94A3B8;
+    }
+
+    .token-keyword {
+      color: #22D3EE;
+      font-weight: 600;
+    }
+
+    .token-command {
+      color: #38BDF8;
+    }
+
+    .token-ip {
+      color: #4ADE80;
+    }
+
+    .token-string {
+      color: #FDE047;
+    }
+
+    .token-var {
+      color: #F472B6;
+    }
+  </style>
+</head>
+
+<body class="bg-dark-surface text-dark-on-surface font-body antialiased min-h-[1024px] flex flex-col pb-24"
+  data-stitch-vh="min-h-[1024px]===min-h-screen">
+
+  <!-- Fixed Top Header -->
+  <header class="sticky top-0 z-40 bg-dark-surface/95 border-b border-dark-outline backdrop-blur-sm">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-8">
+        <a href="../home-landing/HomeLanding.html" class="flex items-center gap-3 group">
+          <div
+            class="w-9 h-9 rounded bg-dark-surface-container-high border border-dark-outline group-hover:border-accent flex items-center justify-center transition-colors">
+            <span class="material-symbols-outlined text-accent text-headline-sm">hub</span>
+          </div>
+          <div class="flex flex-col">
+            <span
+              class="font-headline font-bold text-headline-sm text-dark-on-surface leading-tight flex items-center gap-1.5">
+              NetForge <span
+                class="text-accent text-code-xs font-mono font-medium px-1.5 py-0.5 rounded bg-dark-surface-container-low border border-dark-outline">v2.4</span>
+            </span>
+            <span class="text-label-xs text-dark-outline-variant leading-none font-mono">CLI &amp; Firewall
+              Generator</span>
+          </div>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-1">
+          <a href="../home-landing/HomeLanding.html"
+            class="px-3 py-1.5 text-label-md font-label text-dark-outline-variant hover:text-dark-on-surface hover:bg-dark-surface-container transition-colors rounded">Accueil</a>
+          <a href="../config-wizard/ConfigWizard.html"
+            class="px-3 py-1.5 text-label-md font-label text-dark-outline-variant hover:text-dark-on-surface hover:bg-dark-surface-container transition-colors rounded">Assistant</a>
+          <a href="../results-dashboard/ResultsDashboard.html"
+            class="px-3 py-1.5 text-label-md font-label text-accent bg-dark-surface-container-high rounded border border-dark-outline">Tableau
+            de Bord</a>
+          <a href="../network-topology/NetworkTopology.html"
+            class="px-3 py-1.5 text-label-md font-label text-dark-outline-variant hover:text-dark-on-surface hover:bg-dark-surface-container transition-colors rounded">Topologie
+            Réseau</a>
+          <a href="../about-portfolio/AboutPortfolio.html"
+            class="px-3 py-1.5 text-label-md font-label text-dark-outline-variant hover:text-dark-on-surface hover:bg-dark-surface-container transition-colors rounded">À
+            propos</a>
+        </nav>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <div id="toastNotification"
+          class="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded bg-emerald-950/80 border border-emerald-800/80 text-emerald-300 text-label-sm font-label">
+          <span class="material-symbols-outlined text-body-sm">check_circle</span>
+          <span>Configuration compilée avec succès</span>
+        </div>
+        <a href="../config-wizard/ConfigWizard.html"
+          class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-dark-surface-container border border-dark-outline text-label-sm font-label text-dark-on-surface hover:border-accent transition-colors">
+          <span class="material-symbols-outlined text-body-sm">tune</span>
+          <span>Modifier</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Project Summary Header Banner -->
+  <section class="border-b border-dark-outline bg-dark-surface-container-low py-6">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+      <div>
+        <div class="flex items-center gap-3">
+          <span class="text-label-sm font-code text-accent uppercase tracking-wider">Résultats de Génération</span>
+          <span class="text-dark-outline-variant">•</span>
+          <span class="text-label-sm text-dark-outline-variant">Généré le 18 Nov 2026</span>
+        </div>
+        <h1 class="font-headline text-headline-lg font-bold text-dark-on-surface mt-1 flex items-center gap-3">
+          <span>Projet : Refonte-LAN-Siege</span>
+          <span
+            class="font-code text-code-sm text-accent bg-dark-surface-container px-2.5 py-0.5 rounded border border-dark-outline font-normal">
+            192.168.0.0/16
+          </span>
+        </h1>
+      </div>
+
+      <!-- Quick Metrics Bullet Points -->
+      <div
+        class="flex flex-wrap items-center gap-3 sm:gap-6 bg-dark-surface-container p-3 rounded-lg border border-dark-outline text-body-sm">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded bg-dark-surface-container-high flex items-center justify-center text-accent">
+            <span class="material-symbols-outlined text-headline-sm">segment</span>
+          </div>
+          <div>
+            <span class="text-label-xs font-label text-dark-outline-variant block">VLANs configurés</span>
+            <span class="font-semibold text-dark-on-surface">3 VLANs actifs</span>
+          </div>
+        </div>
+
+        <div class="w-px h-8 bg-dark-outline hidden sm:block"></div>
+
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded bg-dark-surface-container-high flex items-center justify-center text-emerald-400">
+            <span class="material-symbols-outlined text-headline-sm">devices</span>
+          </div>
+          <div>
+            <span class="text-label-xs font-label text-dark-outline-variant block">Postes &amp; Hôtes</span>
+            <span class="font-semibold text-dark-on-surface">52 requis / 82 alloués</span>
+          </div>
+        </div>
+
+        <div class="w-px h-8 bg-dark-outline hidden sm:block"></div>
+
+        <div class="flex items-center gap-2.5">
+          <div
+            class="w-8 h-8 rounded bg-emerald-950/60 border border-emerald-800/40 flex items-center justify-center text-emerald-400">
+            <span class="material-symbols-outlined text-headline-sm">verified</span>
+          </div>
+          <div>
+            <span class="text-label-xs font-label text-dark-outline-variant block">Score de Sécurité</span>
+            <span class="font-semibold text-emerald-400 font-mono">98 / 100 (Optimal)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Area: Tabs + Best Practices Sidebar -->
+  <main class="max-w-7xl mx-auto px-6 py-8 flex-1 w-full grid grid-cols-1 xl:grid-cols-12 gap-8 items-start">
+
+    <!-- Left 8-9 cols: Artifact Tabs and Detail Views -->
+    <div class="xl:col-span-8 space-y-6">
+
+      <!-- Navigation Tabs Container -->
+      <div
+        class="bg-dark-surface-container rounded-lg border border-dark-outline p-1.5 flex flex-wrap gap-1.5 shadow-sm"
+        role="tablist">
+        <button id="tabBtnPlan" onclick="switchTab(&#39;plan&#39;)"
+          class="tab-btn flex items-center gap-2 px-3.5 py-2 rounded text-label-md font-label transition-colors cursor-pointer bg-dark-surface-container-high text-accent font-semibold border border-dark-outline">
+          <span class="material-symbols-outlined text-body-lg">lan</span>
+          <span>Plan d&#39;adressage</span>
+        </button>
+        <button id="tabBtnCisco" onclick="switchTab(&#39;cisco&#39;)"
+          class="tab-btn flex items-center gap-2 px-3.5 py-2 rounded text-label-md font-label transition-colors cursor-pointer text-dark-outline-variant hover:text-dark-on-surface">
+          <span class="material-symbols-outlined text-body-lg">terminal</span>
+          <span>Cisco IOS (Core)</span>
+        </button>
+        <button id="tabBtnPfsense" onclick="switchTab(&#39;pfsense&#39;)"
+          class="tab-btn flex items-center gap-2 px-3.5 py-2 rounded text-label-md font-label transition-colors cursor-pointer text-dark-outline-variant hover:text-dark-on-surface">
+          <span class="material-symbols-outlined text-body-lg">security</span>
+          <span>Pare-feu pfSense</span>
+        </button>
+        <button id="tabBtnPs" onclick="switchTab(&#39;powershell&#39;)"
+          class="tab-btn flex items-center gap-2 px-3.5 py-2 rounded text-label-md font-label transition-colors cursor-pointer text-dark-outline-variant hover:text-dark-on-surface">
+          <span class="material-symbols-outlined text-body-lg">code</span>
+          <span>PowerShell DHCP</span>
+        </button>
+        <button id="tabBtnDoc" onclick="switchTab(&#39;doc&#39;)"
+          class="tab-btn flex items-center gap-2 px-3.5 py-2 rounded text-label-md font-label transition-colors cursor-pointer text-dark-outline-variant hover:text-dark-on-surface">
+          <span class="material-symbols-outlined text-body-lg">description</span>
+          <span>Documentation</span>
+        </button>
+      </div>
+
+      <!-- TAB 1: Plan d'Adressage (Default Active) -->
+      <section id="panelPlan" class="tab-panel space-y-6">
+
+        <!-- Visual Subnet Breakdown Chart -->
+        <div class="bg-dark-surface-container rounded-lg border border-dark-outline p-6">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <h3 class="font-headline text-headline-sm font-bold text-dark-on-surface">Découpage Visuel de l&#39;Espace
+                d&#39;Adressage VLSM</h3>
+              <p class="text-body-sm text-dark-outline-variant">Répartition sans gaspillage dans le supernet
+                192.168.0.0/16</p>
+            </div>
+            <span
+              class="font-code text-code-xs text-dark-outline-variant bg-dark-surface-container-low px-2 py-1 rounded border border-dark-outline">
+              Capacité allouée : 82 / 65534 hôtes
+            </span>
+          </div>
+
+          <!-- Segment Bar Graph -->
+          <div
+            class="w-full h-8 rounded-lg overflow-hidden flex border border-dark-outline bg-dark-surface-container-low p-1 gap-1">
+            <div
+              class="bg-cyan-500/80 hover:bg-cyan-400 h-full rounded flex items-center justify-center font-code text-code-xs text-white font-semibold transition-colors"
+              style="width: 55%;" title="VLAN 10 Utilisateurs (62 hôtes)">
+              VLAN 10 : 50 Postes (/26)
+            </div>
+            <div
+              class="bg-blue-600/80 hover:bg-blue-500 h-full rounded flex items-center justify-center font-code text-code-xs text-white font-semibold transition-colors"
+              style="width: 25%;" title="VLAN 20 Serveurs (14 hôtes)">
+              VLAN 20 (/28)
+            </div>
+            <div
+              class="bg-amber-600/80 hover:bg-amber-500 h-full rounded flex items-center justify-center font-code text-code-xs text-white font-semibold transition-colors"
+              style="width: 15%;" title="VLAN 30 DMZ (6 hôtes)">
+              VLAN 30 (/29)
+            </div>
+            <div
+              class="bg-dark-outline h-full rounded flex items-center justify-center font-code text-code-xs text-dark-outline-variant"
+              style="width: 5%;" title="Espace réservé">
+              Res.
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-4 mt-3 text-label-sm font-label text-dark-outline-variant">
+            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded bg-cyan-500"></span> VLAN 10 :
+              Utilisateurs (/26)</span>
+            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded bg-blue-600"></span> VLAN 20 :
+              Serveurs (/28)</span>
+            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded bg-amber-600"></span> VLAN 30 : DMZ
+              Publique (/29)</span>
+          </div>
+        </div>
+
+        <!-- Table of Subnets -->
+        <div class="bg-dark-surface-container rounded-lg border border-dark-outline overflow-hidden">
+          <div class="px-6 py-4 border-b border-dark-outline flex items-center justify-between">
+            <h3 class="font-headline text-headline-sm font-bold text-dark-on-surface">Tableau Détaillé d&#39;Adressage
+              IP</h3>
+            <button onclick="copyTableData()"
+              class="inline-flex items-center gap-1.5 text-label-sm font-label text-accent hover:underline cursor-pointer">
+              <span class="material-symbols-outlined text-body-sm">content_copy</span>
+              <span>Copier les adresses</span>
+            </button>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse font-code text-code-sm">
+              <thead>
+                <tr
+                  class="bg-dark-surface-container-low text-dark-outline-variant text-label-xs uppercase font-label border-b border-dark-outline">
+                  <th class="py-3 px-4">VLAN</th>
+                  <th class="py-3 px-4">Nom</th>
+                  <th class="py-3 px-4">Sous-Réseau CIDR</th>
+                  <th class="py-3 px-4">Masque</th>
+                  <th class="py-3 px-4">Passerelle (GW)</th>
+                  <th class="py-3 px-4">Plage DHCP / Hôtes</th>
+                  <th class="py-3 px-4">Broadcast</th>
+                  <th class="py-3 px-4 text-center">Occupation</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-dark-outline">
+                <tr class="hover:bg-dark-surface-container-high/60 transition-colors">
+                  <td class="py-3.5 px-4 font-bold text-accent">10</td>
+                  <td class="py-3.5 px-4 font-body text-dark-on-surface font-medium">VLAN_UTILISATEURS</td>
+                  <td class="py-3.5 px-4 text-dark-on-surface">192.168.10.0/26</td>
+                  <td class="py-3.5 px-4 text-dark-outline-variant">255.255.255.192</td>
+                  <td class="py-3.5 px-4 text-cyan-300 font-semibold">192.168.10.1</td>
+                  <td class="py-3.5 px-4 text-dark-on-surface">192.168.10.10 – 192.168.10.62</td>
+                  <td class="py-3.5 px-4 text-dark-outline-variant">192.168.10.63</td>
+                  <td class="py-3.5 px-4 text-center">
+                    <span
+                      class="inline-flex items-center px-2 py-0.5 rounded text-label-xs bg-cyan-950 text-cyan-300 border border-cyan-800/40">
+                      50/62 (80%)
+                    </span>
+                  </td>
+                </tr>
+
+                <tr class="hover:bg-dark-surface-container-high/60 transition-colors">
+                  <td class="py-3.5 px-4 font-bold text-accent">20</td>
+                  <td class="py-3.5 px-4 font-body text-dark-on-surface font-medium">VLAN_SERVEURS</td>
+                  <td class="py-3.5 px-4 text-dark-on-surface">192.168.20.0/28</td>
+                  <td class="py-3.5 px-4 text-dark-outline-variant">255.255.255.240</td>
+                  <td class="py-3.5 px-4 text-cyan-300 font-semibold">192.168.20.1</td>
+                  <td class="py-3.5 px-4 text-dark-on-surface">192.168.20.2 – 192.168.20.14 (Statique)</td>
+                  <td class="py-3.5 px-4 text-dark-outline-variant">192.168.20.15</td>
+                  <td class="py-3.5 px-4 text-center">
+                    <span
+                      class="inline-flex items-center px-2 py-0.5 rounded text-label-xs bg-emerald-950 text-emerald-300 border border-emerald-800/40">
+                      1/14 (7%)
+                    </span>
+                  </td>
+                </tr>
+
+                <tr class="hover:bg-dark-surface-container-high/60 transition-colors">
+                  <td class="py-3.5 px-4 font-bold text-accent">30</td>
+                  <td class="py-3.5 px-4 font-body text-dark-on-surface font-medium">VLAN_DMZ_PUBLIQUE</td>
+                  <td class="py-3.5 px-4 text-dark-on-surface">192.168.30.0/29</td>
+                  <td class="py-3.5 px-4 text-dark-outline-variant">255.255.255.248</td>
+                  <td class="py-3.5 px-4 text-cyan-300 font-semibold">192.168.30.1</td>
+                  <td class="py-3.5 px-4 text-dark-on-surface">192.168.30.2 – 192.168.30.6 (Statique)</td>
+                  <td class="py-3.5 px-4 text-dark-outline-variant">192.168.30.7</td>
+                  <td class="py-3.5 px-4 text-center">
+                    <span
+                      class="inline-flex items-center px-2 py-0.5 rounded text-label-xs bg-amber-950 text-amber-300 border border-amber-800/40">
+                      1/6 (16%)
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 2: Cisco IOS (Hidden by default) -->
+      <section id="panelCisco" class="tab-panel hidden space-y-6">
+        <div class="bg-dark-surface-container rounded-lg border border-dark-outline overflow-hidden">
+          <div
+            class="px-6 py-4 bg-dark-surface-container-high border-b border-dark-outline flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-accent text-body-lg">terminal</span>
+              <span
+                class="font-code text-code-sm text-dark-on-surface font-semibold">Cisco-IOS-Catalyst-Core-SW01.cfg</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <button onclick="copyCode(&#39;ciscoCodeBlock&#39;)"
+                class="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-dark-surface-container border border-dark-outline text-label-sm font-label text-accent hover:border-accent cursor-pointer transition-colors">
+                <span class="material-symbols-outlined text-body-sm">content_copy</span>
+                <span>Copier la configuration</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="p-6 font-code text-code-sm bg-dark-surface-container-low overflow-x-auto">
+            <pre id="ciscoCodeBlock" class="leading-relaxed"><code class="text-dark-on-surface"><span class="token-comment">! ========================================================
+! NetForge v2.4 - Configuration Cisco IOS Switch L3 / Routeur
+! Projet : Refonte-LAN-Siege | Généré pour Cisco Catalyst 3850/9300
+! ========================================================</span>
+
+<span class="token-keyword">enable</span>
+<span class="token-command">configure terminal</span>
+<span class="token-command">hostname</span> SW-CORE-01
+<span class="token-command">ip routing</span>
+<span class="token-command">ip domain-name</span> entreprise.local
+
+<span class="token-comment">! --- CONFIGURATION DU PROTOCOLE SSH v2 &amp; SÉCURITÉ ACCÈS ---</span>
+<span class="token-command">crypto key generate rsa modulus 2048</span>
+<span class="token-command">ip ssh version 2</span>
+<span class="token-command">service password-encryption</span>
+<span class="token-command">enable secret</span> 9 $9$NetForge$SecureAdminKey2026
+
+<span class="token-comment">! --- CRÉATION DE LA BASE DES VLANS ---</span>
+<span class="token-command">vlan 10</span>
+ <span class="token-command">name</span> VLAN_UTILISATEURS
+<span class="token-command">vlan 20</span>
+ <span class="token-command">name</span> VLAN_SERVEURS
+<span class="token-command">vlan 30</span>
+ <span class="token-command">name</span> VLAN_DMZ_PUBLIQUE
+<span class="token-command">vlan 999</span>
+ <span class="token-command">name</span> VLAN_PARKING_UNUSED
+<span class="token-command">exit</span>
+
+<span class="token-comment">! --- INTERFACES ROUTÉES SVI (PASSERELLES PAR DÉFAUT) ---</span>
+<span class="token-command">interface Vlan10</span>
+ <span class="token-command">description</span> Passerelle Utilisateurs (50 postes)
+ <span class="token-command">ip address</span> <span class="token-ip">192.168.10.1 255.255.255.192</span>
+ <span class="token-command">ip helper-address</span> <span class="token-ip">192.168.20.2</span> <span class="token-comment">! Relais DHCP vers Serveur</span>
+ <span class="token-command">no shutdown</span>
+!
+<span class="token-command">interface Vlan20</span>
+ <span class="token-command">description</span> Passerelle Serveurs Applicatifs
+ <span class="token-command">ip address</span> <span class="token-ip">192.168.20.1 255.255.255.240</span>
+ <span class="token-command">no shutdown</span>
+!
+<span class="token-command">interface Vlan30</span>
+ <span class="token-command">description</span> Passerelle DMZ Externe
+ <span class="token-command">ip address</span> <span class="token-ip">192.168.30.1 255.255.255.248</span>
+ <span class="token-command">no shutdown</span>
+
+<span class="token-comment">! --- CONFIGURATION TRUNK 802.1Q VERS PARE-FEU PFSENSE ---</span>
+<span class="token-command">interface GigabitEthernet0/1</span>
+ <span class="token-command">description</span> TRUNK vers pfSense FW01
+ <span class="token-command">switchport trunk encapsulation dot1q</span>
+ <span class="token-command">switchport mode trunk</span>
+ <span class="token-command">switchport trunk allowed vlan 10,20,30</span>
+ <span class="token-command">switchport trunk native vlan 999</span> <span class="token-comment">! Durcissement VLAN 1 interdit</span>
+ <span class="token-command">no shutdown</span>
+
+<span class="token-comment">! --- SÉCURISATION DES PORTS ACCÈS UTILISATEURS (PORT-SECURITY) ---</span>
+<span class="token-command">interface range GigabitEthernet0/2 - 24</span>
+ <span class="token-command">description</span> Ports Access Postes Utilisateurs
+ <span class="token-command">switchport mode access</span>
+ <span class="token-command">switchport access vlan 10</span>
+ <span class="token-command">switchport port-security</span>
+ <span class="token-command">switchport port-security maximum 2</span>
+ <span class="token-command">switchport port-security violation restrict</span>
+ <span class="token-command">spanning-tree portfast</span>
+ <span class="token-command">spanning-tree bpduguard enable</span>
+<span class="token-command">exit</span></code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 3: Pare-feu pfSense (Hidden by default) -->
+      <section id="panelPfsense" class="tab-panel hidden space-y-6">
+        <div class="bg-dark-surface-container rounded-lg border border-dark-outline overflow-hidden">
+          <div class="px-6 py-4 border-b border-dark-outline flex items-center justify-between">
+            <div>
+              <h3 class="font-headline text-headline-sm font-bold text-dark-on-surface">Matrice des Règles de Filtrage
+                pfSense</h3>
+              <p class="text-body-sm text-dark-outline-variant">Politique de sécurité avec règle de blocage implicite et
+                séparation stricte DMZ</p>
+            </div>
+            <span
+              class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-label-xs font-label bg-emerald-950 text-emerald-300 border border-emerald-800/40">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              Mode Default-Deny Actif
+            </span>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse font-code text-code-sm">
+              <thead>
+                <tr
+                  class="bg-dark-surface-container-low text-dark-outline-variant text-label-xs uppercase font-label border-b border-dark-outline">
+                  <th class="py-3 px-4">Interface</th>
+                  <th class="py-3 px-4">Action</th>
+                  <th class="py-3 px-4">Proto</th>
+                  <th class="py-3 px-4">Source</th>
+                  <th class="py-3 px-4">Port</th>
+                  <th class="py-3 px-4">Destination</th>
+                  <th class="py-3 px-4">Port Dest</th>
+                  <th class="py-3 px-4">Description</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-dark-outline font-code">
+                <tr class="hover:bg-dark-surface-container-high/60 transition-colors">
+                  <td class="py-3 px-4 font-semibold text-dark-on-surface">VLAN10 (Users)</td>
+                  <td class="py-3 px-4"><span
+                      class="px-2 py-0.5 rounded text-label-xs bg-emerald-950 text-emerald-400 font-bold border border-emerald-800/40">PASS</span>
+                  </td>
+                  <td class="py-3 px-4 text-dark-outline-variant">UDP</td>
+                  <td class="py-3 px-4 text-cyan-300">VLAN10 net</td>
+                  <td class="py-3 px-4 text-dark-outline-variant">*</td>
+                  <td class="py-3 px-4 text-emerald-400">192.168.20.2</td>
+                  <td class="py-3 px-4 text-accent">53 (DNS)</td>
+                  <td class="py-3 px-4 font-body text-dark-outline-variant">Résolution DNS AD locale</td>
+                </tr>
+
+                <tr class="hover:bg-dark-surface-container-high/60 transition-colors">
+                  <td class="py-3 px-4 font-semibold text-dark-on-surface">VLAN10 (Users)</td>
+                  <td class="py-3 px-4"><span
+                      class="px-2 py-0.5 rounded text-label-xs bg-emerald-950 text-emerald-400 font-bold border border-emerald-800/40">PASS</span>
+                  </td>
+                  <td class="py-3 px-4 text-dark-outline-variant">TCP</td>
+                  <td class="py-3 px-4 text-cyan-300">VLAN10 net</td>
+                  <td class="py-3 px-4 text-dark-outline-variant">*</td>
+                  <td class="py-3 px-4 text-dark-on-surface">WAN net</td>
+                  <td class="py-3 px-4 text-accent">80, 443</td>
+                  <td class="py-3 px-4 font-body text-dark-outline-variant">Navigation Internet autorisée</td>
+                </tr>
+
+                <tr class="hover:bg-dark-surface-container-high/60 transition-colors bg-red-950/10">
+                  <td class="py-3 px-4 font-semibold text-amber-300">VLAN30 (DMZ)</td>
+                  <td class="py-3 px-4"><span
+                      class="px-2 py-0.5 rounded text-label-xs bg-red-950 text-red-400 font-bold border border-red-800/40">BLOCK</span>
+                  </td>
+                  <td class="py-3 px-4 text-dark-outline-variant">ANY</td>
+                  <td class="py-3 px-4 text-amber-300">VLAN30 net</td>
+                  <td class="py-3 px-4 text-dark-outline-variant">*</td>
+                  <td class="py-3 px-4 text-red-400">RFC1918_Subnets</td>
+                  <td class="py-3 px-4 text-dark-outline-variant">*</td>
+                  <td class="py-3 px-4 font-body text-red-300 font-medium">Isolation totale DMZ → LAN/Serveurs</td>
+                </tr>
+
+                <tr class="hover:bg-dark-surface-container-high/60 transition-colors">
+                  <td class="py-3 px-4 font-semibold text-dark-on-surface">WAN</td>
+                  <td class="py-3 px-4"><span
+                      class="px-2 py-0.5 rounded text-label-xs bg-emerald-950 text-emerald-400 font-bold border border-emerald-800/40">PASS</span>
+                  </td>
+                  <td class="py-3 px-4 text-dark-outline-variant">TCP</td>
+                  <td class="py-3 px-4 text-dark-outline-variant">*</td>
+                  <td class="py-3 px-4 text-dark-outline-variant">*</td>
+                  <td class="py-3 px-4 text-amber-300">192.168.30.2</td>
+                  <td class="py-3 px-4 text-accent">443 (HTTPS)</td>
+                  <td class="py-3 px-4 font-body text-dark-outline-variant">Publication serveur web public</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 4: PowerShell DHCP (Hidden by default) -->
+      <section id="panelPowershell" class="tab-panel hidden space-y-6">
+        <div class="bg-dark-surface-container rounded-lg border border-dark-outline overflow-hidden">
+          <div
+            class="px-6 py-4 bg-dark-surface-container-high border-b border-dark-outline flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-accent text-body-lg">terminal</span>
+              <span
+                class="font-code text-code-sm text-dark-on-surface font-semibold">Deploy-NetForge-DHCP-DNS.ps1</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <button onclick="copyCode(&#39;psCodeBlock&#39;)"
+                class="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-dark-surface-container border border-dark-outline text-label-sm font-label text-accent hover:border-accent cursor-pointer transition-colors">
+                <span class="material-symbols-outlined text-body-sm">content_copy</span>
+                <span>Copier</span>
+              </button>
+              <button
+                class="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-accent text-on-accent text-label-sm font-label font-semibold hover:bg-cyan-300 cursor-pointer transition-colors">
+                <span class="material-symbols-outlined text-body-sm">download</span>
+                <span>Télécharger .ps1</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="p-6 font-code text-code-sm bg-dark-surface-container-low overflow-x-auto">
+            <pre id="psCodeBlock"
+              class="leading-relaxed"><code class="text-dark-on-surface"><span class="token-comment"># ========================================================
+# Script PowerShell - Configuration Étendues DHCP Windows Server
+# Généré par NetForge pour le domaine entreprise.local
+# ========================================================</span>
+
+<span class="token-keyword">Import-Module</span> DhcpServer
+
+<span class="token-comment"># --- ÉTENDUE VLAN 10 (UTILISATEURS - 50 POSTES) ---</span>
+<span class="token-var">$ScopeId</span> = <span class="token-string">&#34;192.168.10.0&#34;</span>
+<span class="token-keyword">Add-DhcpServerv4Scope</span> `
+  -Name <span class="token-string">&#34;VLAN_UTILISATEURS_SIEGE&#34;</span> `
+  -StartRange <span class="token-ip">192.168.10.10</span> `
+  -EndRange <span class="token-ip">192.168.10.62</span> `
+  -SubnetMask <span class="token-ip">255.255.255.192</span> `
+  -State Active `
+  -LeaseDuration (New-TimeSpan -Days 8)
+
+<span class="token-comment"># Options d&#39;étendue : Passerelle (003) et Serveur DNS (006)</span>
+<span class="token-keyword">Set-DhcpServerv4OptionValue</span> `
+  -ScopeId <span class="token-var">$ScopeId</span> `
+  -OptionId 3 `
+  -Value <span class="token-ip">192.168.10.1</span>
+
+<span class="token-keyword">Set-DhcpServerv4OptionValue</span> `
+  -ScopeId <span class="token-var">$ScopeId</span> `
+  -OptionId 6 `
+  -Value <span class="token-ip">192.168.20.2</span>
+
+<span class="token-keyword">Write-Host</span> <span class="token-string">&#34;[OK] Étendue DHCP VLAN 10 configurée avec succès.&#34;</span> -ForegroundColor Green</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 5: Documentation Markdown (Hidden by default) -->
+      <section id="panelDoc" class="tab-panel hidden space-y-6">
+        <div class="bg-dark-surface-container rounded-lg border border-dark-outline p-8 prose prose-invert max-w-none">
+          <div class="flex items-center justify-between border-b border-dark-outline pb-4 mb-6">
+            <h2 class="font-headline text-headline-md font-bold text-dark-on-surface m-0">Dossier d&#39;Architecture
+              Technique (DAT)</h2>
+            <div class="flex items-center gap-2">
+              <button
+                class="px-3 py-1.5 rounded bg-dark-surface-container-high border border-dark-outline text-label-sm font-label text-accent hover:border-accent cursor-pointer">
+                Télécharger Markdown (.md)
+              </button>
+            </div>
+          </div>
+
+          <div class="space-y-4 text-dark-on-surface font-body text-body-md leading-relaxed">
+            <h3 class="font-headline text-headline-sm font-semibold text-accent">1. Présentation de la Segmentation</h3>
+            <p class="text-dark-outline-variant">
+              L&#39;infrastructure réseau s&#39;articule autour d&#39;un sous-réseau parent privé RFC 1918
+              <code>192.168.0.0/16</code> segmenté selon les règles du VLSM (Variable Length Subnet Masking). Cette
+              approche garantit l&#39;absence de gaspillage d&#39;adresses IPv4 tout en prévoyant une marge
+              d&#39;évolution de 20% sur le VLAN Utilisateurs.
+            </p>
+
+            <h3 class="font-headline text-headline-sm font-semibold text-accent">2. Matrice des Rôles &amp; Passerelles
+            </h3>
+            <ul class="list-disc pl-6 space-y-1 text-dark-outline-variant">
+              <li><strong>VLAN 10 (Utilisateurs) :</strong> Passerelle <code>192.168.10.1/26</code> avec bail DHCP de 8
+                jours et inspection Port Security.</li>
+              <li><strong>VLAN 20 (Serveurs) :</strong> Passerelle <code>192.168.20.1/28</code>. Adressage statique
+                exclusif, accès restreint aux seuls ports d&#39;administration.</li>
+              <li><strong>VLAN 30 (DMZ Publique) :</strong> Passerelle <code>192.168.30.1/29</code>. Étanche par rapport
+                aux VLANs de production internes.</li>
+            </ul>
+
+            <h3 class="font-headline text-headline-sm font-semibold text-accent">3. Consignes d&#39;Exploitation &amp;
+              Maintenance</h3>
+            <p class="text-dark-outline-variant">
+              Tout nouveau commutateur d&#39;étage connecté au cœur de réseau doit désactiver le protocole DTP
+              (<code>switchport nonegotiate</code>) et basculer le VLAN natif sur l&#39;ID 999 conformément au guide de
+              durcissement CIS Cisco IOS.
+            </p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Right 3-4 cols: Compliance & Best Practices Checklist Panel -->
+    <aside class="xl:col-span-4 space-y-6">
+
+      <div class="bg-dark-surface-container rounded-lg border border-dark-outline p-6 sticky top-24">
+        <div class="flex items-center justify-between pb-4 border-b border-dark-outline mb-6">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-emerald-400 text-body-lg">gavel</span>
+            <h3 class="font-headline text-headline-sm font-bold text-dark-on-surface whitespace-nowrap">Conformité
+              Réseau</h3>
+          </div>
+          <span
+            class="text-label-xs font-label bg-emerald-950 text-emerald-400 px-2 py-0.5 rounded border border-emerald-800/40">
+            Conformité 98%
+          </span>
+        </div>
+
+        <p class="text-body-sm text-dark-outline-variant mb-6">
+          Audit statique automatisé des règles générées selon les référentiels de sécurité CIS Cisco et ANSSI.
+        </p>
+
+        <!-- Checklist Items -->
+        <div class="space-y-4">
+          <div class="p-3 rounded-lg bg-dark-surface-container-low border border-dark-outline flex items-start gap-3">
+            <span class="material-symbols-outlined text-emerald-400 text-body-lg mt-0.5">check_circle</span>
+            <div>
+              <span class="text-body-sm font-semibold text-dark-on-surface block">VLAN 1 natif neutralisé</span>
+              <span class="text-body-sm text-dark-outline-variant block">Le VLAN natif du trunk 802.1Q a été basculé sur
+                l&#39;ID 999 non routé.</span>
+            </div>
+          </div>
+
+          <div class="p-3 rounded-lg bg-dark-surface-container-low border border-dark-outline flex items-start gap-3">
+            <span class="material-symbols-outlined text-emerald-400 text-body-lg mt-0.5">check_circle</span>
+            <div>
+              <span class="text-body-sm font-semibold text-dark-on-surface block">Isolation étanche de la DMZ</span>
+              <span class="text-body-sm text-dark-outline-variant block">Aucun trafic initié depuis le VLAN 30 ne peut
+                traverser vers le LAN ou les serveurs.</span>
+            </div>
+          </div>
+
+          <div class="p-3 rounded-lg bg-dark-surface-container-low border border-dark-outline flex items-start gap-3">
+            <span class="material-symbols-outlined text-emerald-400 text-body-lg mt-0.5">check_circle</span>
+            <div>
+              <span class="text-body-sm font-semibold text-dark-on-surface block">Durcissement SSH v2 &amp; RSA
+                2048</span>
+              <span class="text-body-sm text-dark-outline-variant block">Telnet désactivé. Clé de chiffrement
+                asymétrique 2048 bits configurée.</span>
+            </div>
+          </div>
+
+          <div class="p-3 rounded-lg bg-amber-950/20 border border-amber-800/40 flex items-start gap-3">
+            <span class="material-symbols-outlined text-amber-400 text-body-lg mt-0.5">warning</span>
+            <div>
+              <span class="text-body-sm font-semibold text-amber-300 block">VLAN 10 : Marge d&#39;évolution (80%)</span>
+              <span class="text-body-sm text-dark-outline-variant block">50 postes configurés sur 62 disponibles (/26).
+                Envisager un /25 si +12 postes prévus.</span>
+            </div>
+          </div>
+
+          <div class="p-3 rounded-lg bg-dark-surface-container-low border border-dark-outline flex items-start gap-3">
+            <span class="material-symbols-outlined text-emerald-400 text-body-lg mt-0.5">check_circle</span>
+            <div>
+              <span class="text-body-sm font-semibold text-dark-on-surface block">Port Security activé</span>
+              <span class="text-body-sm text-dark-outline-variant block">Protection contre les attaques de saturation de
+                table CAM (MAC Flooding).</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 pt-4 border-t border-dark-outline text-center">
+          <a href="../network-topology/NetworkTopology.html"
+            class="inline-flex items-center gap-1.5 text-label-sm font-label text-accent hover:underline">
+            <span class="material-symbols-outlined text-body-sm">account_tree</span>
+            <span>Explorer la topologie réseau graphique</span>
+          </a>
+        </div>
+      </div>
+
+    </aside>
+
+  </main>
+
+  <!-- Fixed Bottom Action Bar -->
+  <div
+    class="fixed bottom-0 left-0 right-0 z-50 bg-dark-surface-container-high/95 border-t border-dark-outline backdrop-blur-md py-3 px-6 shadow-2xl">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+        <span class="text-body-sm text-dark-on-surface font-medium">Kit de déploiement prêt pour la mise en
+          production</span>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-3">
+        <button onclick="showToast(&#39;Exportation du dossier PDF lancée...&#39;)"
+          class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded bg-dark-surface-container border border-dark-outline text-label-md font-label text-dark-on-surface hover:text-accent hover:border-accent transition-colors cursor-pointer">
+          <span class="material-symbols-outlined text-body-sm">picture_as_pdf</span>
+          <span>Exporter PDF</span>
+        </button>
+
+        <button onclick="showToast(&#39;Documentation Markdown exportée&#39;)"
+          class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded bg-dark-surface-container border border-dark-outline text-label-md font-label text-dark-on-surface hover:text-accent hover:border-accent transition-colors cursor-pointer">
+          <span class="material-symbols-outlined text-body-sm">markdown</span>
+          <span>Exporter Markdown</span>
+        </button>
+
+        <button onclick="showToast(&#39;Lien partageable copié dans le presse-papier&#39;)"
+          class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded bg-dark-surface-container border border-dark-outline text-label-md font-label text-dark-on-surface hover:text-accent hover:border-accent transition-colors cursor-pointer">
+          <span class="material-symbols-outlined text-body-sm">share</span>
+          <span>Copier le lien</span>
+        </button>
+
+        <button onclick="showToast(&#39;Archive NetForge-Configuration.zip générée&#39;)"
+          class="inline-flex items-center gap-2 px-5 py-2 rounded bg-accent text-on-accent text-label-md font-label font-bold hover:bg-cyan-300 transition-colors cursor-pointer shadow-lg">
+          <span class="material-symbols-outlined text-body-sm">archive</span>
+          <span>Télécharger tout (.zip)</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function switchTab(tabKey) {
+      document.querySelectorAll('.tab-panel').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('bg-dark-surface-container-high', 'text-accent', 'border', 'border-dark-outline', 'font-semibold');
+        btn.classList.add('text-dark-outline-variant');
+      });
+
+      const panels = {
+        'plan': 'panelPlan',
+        'cisco': 'panelCisco',
+        'pfsense': 'panelPfsense',
+        'powershell': 'panelPowershell',
+        'doc': 'panelDoc'
+      };
+      const btns = {
+        'plan': 'tabBtnPlan',
+        'cisco': 'tabBtnCisco',
+        'pfsense': 'tabBtnPfsense',
+        'powershell': 'tabBtnPs',
+        'doc': 'tabBtnDoc'
+      };
+
+      const p = document.getElementById(panels[tabKey]);
+      const b = document.getElementById(btns[tabKey]);
+      if (p && b) {
+        p.classList.remove('hidden');
+        b.classList.add('bg-dark-surface-container-high', 'text-accent', 'border', 'border-dark-outline', 'font-semibold');
+        b.classList.remove('text-dark-outline-variant');
+      }
+    }
+
+    function copyCode(elementId) {
+      const el = document.getElementById(elementId);
+      if (el) {
+        showToast("Code copié dans le presse-papier !");
+      }
+    }
+
+    function copyTableData() {
+      showToast("Plan d'adressage copié en format tabulaire !");
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toastNotification');
+      if (toast) {
+        toast.innerHTML = `<span class="material-symbols-outlined text-sm">check_circle</span> <span>${message}</span>`;
+        toast.classList.remove('hidden');
+        setTimeout(() => {
+          toast.classList.add('hidden');
+        }, 3000);
+      }
+    }
+  </script>
+</body>
+
+</html>
